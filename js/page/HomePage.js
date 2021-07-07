@@ -31,12 +31,12 @@ export default function HomePage(props) {
 
 
        <Tab.Screen name="TredndingPage" component={TredndingPage} options={{
-         tabBarLabel: "save",
+         tabBarLabel: "Trending",
          tabBarIcon: ({ color, size }) =>
            <MaterialIcons name='whatshot' size={26} style={{ color: color }} />
        }} />
        <Tab.Screen name="MyPage" component={MyPage} options={{
-         tabBarLabel: "save",
+         tabBarLabel: "MyPage",
          tabBarIcon: ({ color, size }) =>
            <MaterialIcons name='whatshot' size={26} style={{ color: color }} />
        }} />

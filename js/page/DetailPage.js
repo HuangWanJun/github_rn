@@ -12,6 +12,7 @@ import {
 
 export default function DetailPage(props) {
   //const {navigation} = this.props;
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Detail Page</Text>

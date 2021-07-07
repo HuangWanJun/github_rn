@@ -25,10 +25,10 @@ const StackApp = createStackNavigator()
 export default function appNavigators() {
   return (
     <NavigationContainer>
-      <StackApp.Navigator initialRouteName='WelcomePage' headerMode='none'>
+      <StackApp.Navigator initialRouteName='WelcomePage' headerMode='float'>
         <StackApp.Screen name='WelcomePage' component={WelcomePage} />
-        <StackApp.Screen name='HomePage' component={HomePage} />
-        <StackApp.Screen name='DetailPage' component={DetailPage}     />
+        <StackApp.Screen name='HomePage' component={HomePage} options={{headerShown:false}} />
+        <StackApp.Screen name='DetailPage' component={DetailPage}    />
       </StackApp.Navigator>
     </NavigationContainer>
 
