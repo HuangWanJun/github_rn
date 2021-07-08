@@ -9,11 +9,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import UserPage from "../components/UserPage";
 
 export default function MyPage() {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>My Page</Text>
+      <UserPage></UserPage>
     </View>
   );
 }

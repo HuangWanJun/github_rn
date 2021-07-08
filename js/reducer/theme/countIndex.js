@@ -15,7 +15,7 @@ export default function onAction(state=defaultState,action){
     case CountType.ADD:
       return{
         ...state,
-        theme:action.count
+        count:action.count
       }
     default:
       return state;

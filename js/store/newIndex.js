@@ -1,10 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { addTodo } from "./slice/todo";
-//import orderReducer from "./slice/order";
+import {configureStore, createAsyncThunk} from '@reduxjs/toolkit';
+import counterReducer from './slice/sliceCounter';
+import usersReducer from './slice/sliceUser';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
-    todo: addTodo,
-    //order: orderReducer,
+    counter: counterReducer,
+    users: usersReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;

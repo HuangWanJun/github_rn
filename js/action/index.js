@@ -1,7 +1,8 @@
 
-import {onThemeChange} from './theme'
+import {onThemeChange,onCountChange} from './theme'
 
 export default {
   onThemeChange,
+  onCountChange,
 }
 

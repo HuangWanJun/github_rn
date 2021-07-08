@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import type {Node} from 'react';
 import {
   Button,
@@ -10,32 +10,34 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import TodoList from "../components/Todolist";
-import {addTodo} from "../store/slice/todo";
+import { addTodo, decrement, increment,incrementByAmount } from "../store/slice/sliceCounter";
 
 
-function TredndingPage({props}) {
+function TredndingPage(props) {
 
+  const {count} = useSelector(state => state.counter)
   const dispatch = useDispatch();
-  const handleAddToDo = () => {
-    dispatch(addTodo("A new to Item"))
-  }
+
 
   return (
     <View style={styles.container}>
-      <TodoList />
-      <Button title={"new Item"} onPress={handleAddToDo} ></Button>
-      <Text style={styles.welcome}>Trednding Page</Text>
+      {/*<TodoList />*/}
+      <Text>The count is:{count}</Text>
+      <Button title={"increment"} onPress={()=>dispatch(increment())} ></Button>
+      <Button title={"decrement"} onPress={()=>dispatch(decrement())} ></Button>
+      <Button title={"incrementByAmount"} onPress={()=>dispatch(incrementByAmount(33))} ></Button>
     </View>
   );
 }
 
-const mapStateToProps = state => ({
-  theme:state.theme,
-});
+// const mapStateToProps = state => ({
+//   count:state.countIndex.count
+// });
+//export default connect(mapStateToProps)(TredndingPage);
 
-export default connect(mapStateToProps)(TredndingPage);
+export default TredndingPage;
 
 const styles = StyleSheet.create({
   container: {

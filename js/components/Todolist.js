@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectTodo } from "../store/slice/todo";
+import { selectTodo } from "../store/slice/sliceCounter";
 import { Text,View } from "react-native";
 const TodoList = () => {
   const states = useSelector(selectTodo); // <-- 拿取資料
