@@ -14,20 +14,21 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   return (await response.json()).data
 });
 
+export const usersAdapter = createEntityAdapter();
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: {
-    users: [],
+  initialState: usersAdapter.getInitialState({
     loading: false
-  },
+  }),
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      state.users = action.payload;
+      //state.users = action.payload;
+      usersAdapter.setAll(state, action.payload);
       state.loading = false;
     });
     builder.addCase(fetchUsers.rejected, (state) => {
@@ -35,5 +36,14 @@ const usersSlice = createSlice({
     });
   }
 });
+
+export const {
+  selectById: selectUserById,
+  selectIds: selectUserIds,
+  selectEntities: selectUserEntities,
+  selectAll: selectAllUsers,
+  selectTotal: selectTotalUsers
+} = usersAdapter.getSelectors((state: RootState) => state.users);
+
 
 export default usersSlice.reducer;

@@ -1,22 +1,24 @@
 import React from "react";
 import { useDispatch,useSelector } from "react-redux";
-import {fetchUsers} from '../store/slice/sliceUser'
+import {fetchUsers,selectAllUsers} from '../store/slice/sliceUser'
 import { useEffect } from "react";
 import { ActivityIndicator,View,Button,Text,StyleSheet,Image } from "react-native";
 import {store} from '../store/newIndex'
 
 const UserPage = () => {
-
+  // const dispatch = useDispatch();
+  // const { users, loading } = useSelector((state: RootState) => state.users);
 
   const dispatch = useDispatch();
-  const { users, loading } = useSelector((state: RootState) => state.users);
+  const { loading } = useSelector((state: RootState) => state.users);
+  const users = useSelector(selectAllUsers);
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
 
   if(loading){
-    return <ActivityIndicator size="large"></ActivityIndicator>
+    return <ActivityIndicator size="large" style={styles.loader} ></ActivityIndicator>
   }
 
   return (
