@@ -3,7 +3,8 @@ import { useDispatch,useSelector } from "react-redux";
 import {fetchUsers,selectAllUsers} from '../store/slice/sliceUser'
 import { useEffect } from "react";
 import { ActivityIndicator,View,Button,Text,StyleSheet,Image } from "react-native";
-import {store} from '../store/newIndex'
+import {store} from '../utils/configureStore'
+import {setMessage} from '../store/slice/sliceMessage'
 
 const UserPage = () => {
   // const dispatch = useDispatch();
@@ -12,6 +13,11 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state: RootState) => state.users);
   const users = useSelector(selectAllUsers);
+
+  const {message} = useSelector((state:RootState) => state.message);
+  const handlePress = () => {
+    dispatch(setMessage('Message from Component'));
+  };
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -23,7 +29,10 @@ const UserPage = () => {
 
   return (
     <View>
+
       <Button title={'Reload'} onPress={() => store.dispatch(fetchUsers())} />
+      <Text>Message from:{message}</Text>
+      <Button title={'Set Message'} onPress={handlePress} />
       {users.map((user) => {
         return (
           <View style={styles.container} key={user.id}>

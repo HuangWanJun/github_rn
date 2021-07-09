@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import {DeviceStorage} from '../../utils/DeviceStorage'
 
 
 export const silceCounter = createSlice({

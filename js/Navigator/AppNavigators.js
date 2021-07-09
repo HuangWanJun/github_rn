@@ -22,6 +22,9 @@ import DetailPage from "../page/DetailPage";
 
 const StackApp = createStackNavigator()
 
+//NavigationContainer
+//https://hybridheroes.de/blog/2021-02-05-react-navigation-v5/
+
 export default function appNavigators() {
   return (
     <NavigationContainer>

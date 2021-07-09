@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type {Node} from 'react';
 import {
   Button,
@@ -10,16 +10,39 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TodoList from "../components/Todolist";
 import { addTodo, decrement, increment,incrementByAmount } from "../store/slice/sliceCounter";
-
+import {DeviceStorage} from '../utils/DeviceStorage'
 
 function TredndingPage(props) {
 
   const {count} = useSelector(state => state.counter)
   const dispatch = useDispatch();
+  const [param,setParam] = useState('0')
 
+  const setNewParams = async ()=>{
+    console.log(`local value ${param}`)
+    let egg = await DeviceStorage.getStringData('@egg')
+
+    console.log( `old value ${egg}`);
+    egg = `${egg} 1223`
+    await DeviceStorage.storeStringData('@egg',egg)
+
+    egg = await DeviceStorage.getStringData('@egg')
+    await setParam(egg)
+    console.log(`new value ${param}`)
+  }
+
+  useEffect(()=>{
+    //setNewParams();
+
+  })
+
+  useEffect(()=>{
+    DeviceStorage.removeValue('@egg')
+
+  },[])
 
   return (
     <View style={styles.container}>

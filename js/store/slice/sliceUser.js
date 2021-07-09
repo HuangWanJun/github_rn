@@ -1,14 +1,15 @@
 import {createAsyncThunk, createSlice,createEntityAdapter} from '@reduxjs/toolkit';
-import { RootState } from '../newIndex'
+//import { RootState } from '../../utils/configureStore'
 
-const UserData = {
-  id: 0,
-  email: "",
-  first_name: "",
-  last_name: "",
-  avatar: "",
-}
+// const UserData = {
+//   id: 0,
+//   email: "",
+//   first_name: "",
+//   last_name: "",
+//   avatar: "",
+// }
 
+////https://hybridheroes.de/blog/2021-01-08-redux-toolkit-react-native/
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await fetch('https://reqres.in/api/users');
   return (await response.json()).data
@@ -43,7 +44,7 @@ export const {
   selectEntities: selectUserEntities,
   selectAll: selectAllUsers,
   selectTotal: selectTotalUsers
-} = usersAdapter.getSelectors((state: RootState) => state.users);
+} = usersAdapter.getSelectors((state) => state.users);
 
 
 export default usersSlice.reducer;
